@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./login_page/login.css" />
+    <title>ip management system</title>
+  </head>
+  <body>
+    <nav class="nav__bar">
+      Ip Address Management System
+      <ul class="nav__list">
+        <a href="#"><li>Home page</li></a>
+        <a href="#"><li>About us</li></a>
+        <a href="#"><li>Contact us</li></a>
+      </ul>
+    </nav>
+    <div class="main__container">
+      <div class="container">
+        <div class="title">
+          <h2>Ip address management system</h2>
+          <div>
+            <h4>Calculate VLSM</h4>
+          </div>
+        </div>
+        <div class="login">
+          <form class="form__container reg__form form" id="reg__form">
+            <h2 class="form-row">login</h2>
+            <input
+              autocomplete="off"
+              type="text"
+              name="username"
+              id="username"
+              class="username form-row form-input"
+              placeholder="username"
+              required
+            />
+            <input
+              autocomplete="off"
+              type="password"
+              name="password"
+              id="password"
+              class="password form-row form-input"
+              placeholder="passwork"
+              required
+              minlength="4"
+            />
+            <button type="submit" class="btn form-row">Login</button>
+          </form>
+          <p>create new account?</p>
+
+          <!-- <a href="./login_page/register_page.html> 
+            <button class="register btn form-row" id="register">register</button></a> -->
+          <a
+            style="
+              display: block;
+              width: 100%;
+              color: black;
+              border: 0.4px solid rgb(109, 193, 204);
+              border-radius: 0.3rem;
+            "
+            class="form-row"
+            href="./login_page/register_page.html"
+            ><button style="width: 100%" class="btn" id="register">
+              register
+            </button></a
+          >
+        </div>
+      </div>
+    </div>
+    <footer></footer>
+    <script src="./login_page/login.js"></script>
+  </body>
+</html>

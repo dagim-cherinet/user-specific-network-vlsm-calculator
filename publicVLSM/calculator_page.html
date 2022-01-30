@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./main.css" />
+    <title>vlsm calculator</title>
+  </head>
+  <body>
+    <a href="./index.html"><button class="btn">Logout</button></a>
+
+    <div class="main__container" id="main__container">
+      <div class="outer__container" id="outer__container">
+        <div class="inner__container">
+          <h2 class="title">
+            VLSM Calculator
+            <a href="./saved_networks.html"
+              ><button class="btn">saved Networks</button></a
+            >
+          </h2>
+
+          <div class="ip__input">
+            <p>Enter the IP address</p>
+            <input
+              type="text"
+              class="ip"
+              id="ip"
+              placeholder="192.168.12.10/24"
+              autocomplete="off"
+            />
+            <button class="btn enter" id="enter">enter</button>
+          </div>
+
+          <div class="network">
+            <div class="network__container">
+              <p>Enter the Network Name</p>
+              <input
+                type="text"
+                class="network__name"
+                id="network__name"
+                placeholder="network 1"
+              />
+            </div>
+            <div class="host__container">
+              <p>Enter Number of hosts</p>
+              <input
+                type="number"
+                class="host__number"
+                id="host__number"
+                placeholder="1"
+              />
+              <button class="btn add" id="add">add</button>
+            </div>
+            <div class="calculate__container">
+              <button class="btn calculate" id="calculate">calculate</button>
+            </div>
+          </div>
+          <div class="networkDiv" id="networkDiv"></div>
+        </div>
+      </div>
+      <div class="resultDiv__container">
+        <div class="resultDiv hide" id="resultDiv"></div>
+      </div>
+    </div>
+    <!-- axios -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- javaScript file -->
+    <script src="./calculator.js"></script>
+  </body>
+</html>

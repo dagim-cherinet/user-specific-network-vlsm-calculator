@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <!-- normalize css -->
+    <link rel="stylesheet" href="./normalize.css" />
+    <!-- main css -->
+    <link rel="stylesheet" href="./main2.css" />
+    <title>vlsm || Final</title>
+  </head>
+  <body>
+    <form class="network-form">
+      <h4>Networks in the Database</h4>
+      <!-- <div class="form-control">
+        <input
+          type="text"
+          name="name"
+          class="task-input"
+          placeholder="enter netwrok name"
+        />
+        <button type="submit" class="btn submit-btn">submit</button>
+      </div> -->
+      <div class="form-alert"></div>
+    </form>
+    <section class="networks-container">
+      <p class="loading-text">Loading...</p>
+      <div class="networks"></div>
+    </section>
+    <!-- axios -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./saved_networks.js"></script>
+  </body>
+</html>
