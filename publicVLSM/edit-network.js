@@ -51,7 +51,7 @@ editFormDOM.addEventListener("submit", async (e) => {
       networkCompletedDOM.checked = true;
     }
     formAlertDOM.style.display = "block";
-    formAlertDOM.textContent = `success, edited task`;
+    formAlertDOM.textContent = `success, edited Sub-Network`;
     formAlertDOM.classList.add("text-success");
   } catch (error) {
     console.log(error);
