@@ -3,25 +3,43 @@ const loadingDOM = document.querySelector(".loading-text");
 const formDOM = document.querySelector(".network-form");
 const networkInputDOM = document.querySelector(".network-input");
 const formAlertDOM = document.querySelector(".form-alert");
-// Load tasks from /api/networks
+// Load networks from /api/networks
 const showNetworks = async () => {
-  loadingDOM.style.visibility = "visible";
+  loadingDOM.style.display = "block";
   try {
-    const {
-      data: { networks },
-    } = await axios.get("/api/v1/networks");
+    const token = localStorage.getItem("token");
+    const response = await fetch("/api/v1/user-specific-networks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token }),
+    });
+
+    const networks = await response.json();
     console.log(networks);
 
     if (networks.length < 1) {
       networksDOM.innerHTML =
-        '<h5 class="empty-list">No tasks in your list</h5>';
-      loadingDOM.style.visibility = "hidden";
+        '<h5 class="empty-list">No network in your database</h5>';
+      loadingDOM.style.display = "none";
       return;
     }
     const allNetworks = networks
       .map((Single_network) => {
-        const { completed, _id: networkID, network_name } = Single_network;
-        return `<div class="single-network ${completed && "task-completed"}">
+        const {
+          _id: networkID,
+          network_name,
+          network_address,
+          subnet_mask,
+          number_of_allocated_IP,
+          number_of_usable_hosts,
+          number_of_hosts_wasted,
+          first_host_address,
+          last_host_address,
+          broadcast_address,
+        } = Single_network;
+        return `<div class="single-network">
 <h5><span><i class="far fa-check-circle"></i></span>${network_name}</h5>
 <div class="task-links">
 
@@ -36,26 +54,71 @@ const showNetworks = async () => {
 <i class="fas fa-trash"></i>delete
 </button>
 </div>
+</div>
+<div class = "network__details">
+   <table class="network__table">
+       <thead>
+          <tr>
+              <th>Network Details</th>
+              <th></th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr>
+             <td>Network Address:</td>
+             <td>${network_address}</td>
+         </tr>
+          <tr>
+             <td>Subnet Mask:</td>
+             <td>${subnet_mask}</td>
+         </tr>
+          <tr>
+             <td>Number of Allocated Address:</td>
+             <td>${number_of_allocated_IP}</td>
+         </tr>
+          <tr>
+             <td>Number of Usable Address:</td>
+             <td>${number_of_usable_hosts}</td>
+         </tr>
+          <tr>
+             <td>Number of Host Wasted:</td>
+             <td>${number_of_hosts_wasted}</td>
+         </tr>
+          <tr>
+             <td>First Host Address:</td>
+             <td>${first_host_address}</td>
+         </tr>
+          <tr>
+             <td>Last Host Address:</td>
+             <td>${last_host_address}</td>
+         </tr>
+          <tr>
+             <td>Broadcast Address:</td>
+             <td>${broadcast_address}</td>
+         </tr>
+      </tbody>
+ </table>
+
 </div>`;
       })
       .join("");
     networksDOM.innerHTML = allNetworks;
   } catch (error) {
     console.log(error);
-    tasksDOM.innerHTML =
+    networksDOM.innerHTML =
       '<h5 class="empty-list">There was an error, please try later....</h5>';
   }
-  loadingDOM.style.visibility = "hidden";
+  loadingDOM.style.display = "none";
 };
 
 showNetworks();
 
-// delete task /api/tasks/:id
+// delete network /api/networks/:id
 
 networksDOM.addEventListener("click", async (e) => {
   const el = e.target;
   if (el.parentElement.classList.contains("delete-btn")) {
-    loadingDOM.style.visibility = "visible";
+    loadingDOM.style.display = "block";
     const id = el.parentElement.dataset.id;
     try {
       await axios.delete(`/api/v1/networks/${id}`);
@@ -64,52 +127,5 @@ networksDOM.addEventListener("click", async (e) => {
       console.log(error);
     }
   }
-  loadingDOM.style.visibility = "hidden";
+  loadingDOM.style.display = "none";
 });
-
-// form
-
-// formDOM.addEventListener("submit", async (e) => {
-//   e.preventDefault();
-//   const name = taskInputDOM.value;
-
-//   try {
-//     await axios.post("/api/v1/networks", { name });
-//     showNetworks();
-//     networkInputDOM.value = "";
-//     formAlertDOM.style.display = "block";
-//     formAlertDOM.textContent = `success, task added`;
-//     formAlertDOM.classList.add("text-success");
-//   } catch (error) {
-//     formAlertDOM.style.display = "block";
-//     formAlertDOM.innerHTML = `error, please try again`;
-//   }
-//   setTimeout(() => {
-//     formAlertDOM.style.display = "none";
-//     formAlertDOM.classList.remove("text-success");
-//   }, 3000);
-// });
-// there was a button to add a network using for loop
-// const child = document.createElement("div");
-// child.innerHTML = `<button class="clickMe">click me</button>`;
-// document.body.appendChild(child);
-// document.querySelector(".clickMe").addEventListener("click", () => {
-//   saveToDB();
-// });
-const saveToDB = async () => {
-  let network_address = "its working";
-  let network_name = "QQQQQQQQQQ";
-  for (let i = 0; i < 2; i++) {
-    try {
-      await axios.post("/api/v1/networks", { network_name, network_address });
-      showNetworks();
-      // taskInputDOM.value = "";
-      formAlertDOM.style.display = "block";
-      formAlertDOM.textContent = `success, task added`;
-      formAlertDOM.classList.add("text-success");
-    } catch (error) {
-      formAlertDOM.style.display = "block";
-      formAlertDOM.innerHTML = `error, please try again`;
-    }
-  }
-};

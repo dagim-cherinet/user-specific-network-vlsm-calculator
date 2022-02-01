@@ -1,9 +1,17 @@
 const { NewNetwork, User } = require("../models/Networks");
+const jwt = require("jsonwebtoken");
+const JWT_STRING = "kfkjfkjfdkjakdjferuej#$#$#2u3@#@$@kfj";
 const asyncWrapper = require("../middleware/async");
 const { createCustomError } = require("../errors/custom-error");
 const getAllNetworks = asyncWrapper(async (req, res) => {
-  const networks = await NewNetwork.find({});
-  res.status(200).json({ networks });
+  const { token } = req.body;
+  const user = jwt.verify(token, JWT_STRING);
+  if (!user) {
+    return res.json({ status: "error", error: "authentication failed" });
+  }
+  const id = user._id;
+  const networks = await NewNetwork.find({ userID: id });
+  res.status(200).json(networks);
 });
 
 const createNetwork = asyncWrapper(async (req, res) => {

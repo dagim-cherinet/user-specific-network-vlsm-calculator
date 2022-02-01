@@ -55,7 +55,7 @@
   --letterSpacing: 1px;
   --transition: 0.3s ease-in-out all;
   --max-width: 1120px;
-  --fixed-width: 600px;
+  --fixed-width: 750px;
   /* box shadows */
   --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -177,7 +177,7 @@ form {
   background: var(--white);
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow-2);
-  padding: 2rem 2.5rem;
+  padding: 2rem 2rem;
 }
 label {
   display: block;
@@ -217,7 +217,7 @@ textarea {
   width: 90vw;
   max-width: var(--fixed-width);
   margin: 0 auto;
-  margin-top: 6rem;
+  margin-top: 3rem;
 }
 .network-form h4 {
   text-align: center;
@@ -442,4 +442,39 @@ form > :last-child {
 .single-network-form .form-alert {
   text-align: center;
   margin-top: 1rem;
+}
+.network__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+.network__table thead tr {
+  font-weight: bold;
+  background-color: #2c3b4e;
+  color: white;
+  text-align: left;
+}
+.network__table th,
+.network__table td {
+  padding: 12px 15px;
+}
+.network__table tbody tr {
+  border-bottom: 1px solid #ccc;
+}
+.network__table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+.network__table tbody tr:nth-last-of-type {
+  border-bottom: 3px solid #2c3b4e;
+}
+.network__table:hover {
+  transform: scale(1.0015);
+  box-shadow: var(--shadow-4);
+}
+.network__table tbody tr:hover {
+  transform: scale(1.0115);
+  box-shadow: var(--shadow-4);
+  font-weight: bold;
+  transform: translateX(1.4%);
 }

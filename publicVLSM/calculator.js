@@ -718,7 +718,7 @@ function updateResults() {
   //creating a button to save the results to the database
   let save_container = document.createElement("div");
   save_container.setAttribute("class", "save_container");
-  save_container.innerHTML = `<button class ="btn save_to_database" onclick = "saveToDB1()">Save to Database</button> <a href="index2.html"
+  save_container.innerHTML = `<button class ="btn save_to_database" onclick = "saveToDB1()">Save to Database</button> <a href="./saved_networks.html"
               ><button class="btn">saved Networks</button></a
             >`;
   container__for__results.appendChild(save_container);
