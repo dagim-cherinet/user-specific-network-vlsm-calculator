@@ -13,7 +13,7 @@ const {
 } = require("../controllers/Networks");
 
 router.route("/v1/networks").post(createNetwork);
-router.route("/v1/user-specific-networks").post(getAllNetworks);
+router.route("/v1/get-user-specific-networks").post(getAllNetworks);
 router
   .route("/v1/networks/:id")
   .get(getNetwork)

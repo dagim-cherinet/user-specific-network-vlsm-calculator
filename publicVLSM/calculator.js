@@ -597,6 +597,7 @@ let api_network_detail = [];
 
 //Writes the results of the VLSM to the page
 function updateResults() {
+  api_network_detail = [];
   //Clear any values and styles in the box before continuing in case the user decides to recalculate the results.
   const resultDiv = document.getElementById("resultDiv");
   resultDiv.innerHTML = "";
@@ -631,26 +632,26 @@ function updateResults() {
   var l = results.length;
   for (var c = 0; c < l; c++) {
     var name = results[c][0].trim() == "" ? "(No Name)" : results[c][0];
-    let each__result = document.createElement("div");
-    each__result.setAttribute("id", "each__result");
-    each__result.innerHTML = `<div class = "results_field_1">${name}</div><div class="results_field_2">${results[
-      c
-    ][1].toLocaleString()}</div><div class="results_field_3">${results[c][2]}/${
-      results[c][3]
-    }</div><div class="results_field_4 see__more"><button class="btn-plus" onclick ="show_detail()"><span class ="plus">+</span><span class = "minus hide">-</span></button>&nbsp;</div>`;
-    container__for__results.appendChild(each__result);
+    // let each__result = document.createElement("div");
+    // each__result.setAttribute("id", "each__result");
+    // each__result.innerHTML = `<div class = "results_field_1">${name}</div><div class="results_field_2">${results[
+    //   c
+    // ][1].toLocaleString()}</div><div class="results_field_3">${results[c][2]}/${
+    //   results[c][3]
+    // }</div><div class="results_field_4 see__more"><button class="btn-plus" onclick ="show_detail()"><span class ="plus">+</span><span class = "minus hide">-</span></button>&nbsp;</div>`;
+    // container__for__results.appendChild(each__result);
     // let each__result = document.createElement('div');
     //each__result.setAttribute("class", "results_row");
     //each__result.innerHTML = ``
     //	$("<div class=\"results_row\" id=\"result" +c+ "\"><div class=\"results_field_1\">" +name+ "</div><div class=\"results_field_2\">" +results[c][1].toLocaleString()+ "</div><div class=\"results_field_3\">" +results[c][2] + "/" + results[c][3] + "</div><div id=\"results_expand_" +c+ "\" class=\"results_field_4\" title=\"Click To View The Details For This Network\">+</div></div>").appendTo($(".results"));
     //Color the background of each result alternately
 
-    if (!(c % 2)) {
-      document
-        .getElementById("each__result")
-        .classList.toggle("alternate_rows");
-      //	$("#result" + c).css("background-color","#FFFFFF");
-    }
+    // if (!(c % 2)) {
+    //   document
+    //     .getElementById("each__result")
+    //     .classList.toggle("alternate_rows");
+    //   //	$("#result" + c).css("background-color","#FFFFFF");
+    // }
     //Create the network details box which will be hidden until the plus sign (+) is clicked.
     //Calculate the first usable host address
     var firstHost = num2Address(address2Num(results[c][2]) + 1);
@@ -679,39 +680,116 @@ function updateResults() {
       broadcast_address: broadcast,
     };
     api_network_detail.push(final__result);
-    let output__results = document.createElement("div");
-    output__results.setAttribute("class", "net_detail_box");
-    output__results.setAttribute("class", "hide_detail");
-    output__results.setAttribute("id", "net_detail_box");
-    output__results.innerHTML = `<div class="net_details_header">Network Details</div>
-    <div class="net_details_container">
-    <div class ="net_details_row"><h4 class ="net_details_label">Network Address:</h4>
-    <h4>${results[c][2]}</h4></div>
-    <div class ="net_details_row"><h4 class ="net_details_label">Subnet Mask:</h4>
-    <h4>${getFullMask(results[c][3])} (${results[c][3]} Bits)</h4></div>
-     <div class ="net_details_row"><h4 class ="net_details_label"># of Allocated IP:</h4>
-    <h4>${(usableHosts + 2).toLocaleString()}</h4>
-    </div>
-    <div class ="net_details_row"><h4 class ="net_details_label"># of Usable Hosts:</h4>
-    <h4>${usableHosts.toLocaleString()}</h4>
-    </div>
-    <div class ="net_details_row"><h4 class ="net_details_label"># of Hosts Wasted:</h4>
-    <h4>${thisWasted.toLocaleString()} (${wastedPercent}%)</h4>
-    </div>
-       <div class ="net_details_row"><h4 class ="net_details_label">First Host Address:</h4>
-    <h4>${firstHost}</h4>
-    </div>
-      <div class ="net_details_row"><h4 class ="net_details_label">Last Host Address:</h4>
-<h4>${lastHost}</h4>
-    </div>
-      <div class ="net_details_row"><h4 class ="net_details_label">Broadcast Address:</h4>
-    <h4>${broadcast}</h4>
-    </div>
-    </div>`;
-    container__for__results.appendChild(output__results);
+    // let output__results = document.createElement("div");
+    // output__results.setAttribute("class", "net_detail_box");
+    // output__results.setAttribute("class", "hide_detail");
+    // output__results.setAttribute("id", "net_detail_box");
+    //     output__results.innerHTML = `<div class="net_details_header">Network Details</div>
+    //     <div class="net_details_container">
+    //     <div class ="net_details_row"><h4 class ="net_details_label">Network Address:</h4>
+    //     <h4>${results[c][2]}</h4></div>
+    //     <div class ="net_details_row"><h4 class ="net_details_label">Subnet Mask:</h4>
+    //     <h4>${getFullMask(results[c][3])} (${results[c][3]} Bits)</h4></div>
+    //      <div class ="net_details_row"><h4 class ="net_details_label"># of Allocated IP:</h4>
+    //     <h4>${(usableHosts + 2).toLocaleString()}</h4>
+    //     </div>
+    //     <div class ="net_details_row"><h4 class ="net_details_label"># of Usable Hosts:</h4>
+    //     <h4>${usableHosts.toLocaleString()}</h4>
+    //     </div>
+    //     <div class ="net_details_row"><h4 class ="net_details_label"># of Hosts Wasted:</h4>
+    //     <h4>${thisWasted.toLocaleString()} (${wastedPercent}%)</h4>
+    //     </div>
+    //        <div class ="net_details_row"><h4 class ="net_details_label">First Host Address:</h4>
+    //     <h4>${firstHost}</h4>
+    //     </div>
+    //       <div class ="net_details_row"><h4 class ="net_details_label">Last Host Address:</h4>
+    // <h4>${lastHost}</h4>
+    //     </div>
+    //       <div class ="net_details_row"><h4 class ="net_details_label">Broadcast Address:</h4>
+    //     <h4>${broadcast}</h4>
+    //     </div>
+    //     </div>`;
+    //   container__for__results.appendChild(output__results);
   }
   console.log(results);
   console.log(api_network_detail);
+  const allNetworks = api_network_detail
+    .map((Single_network) => {
+      const {
+        _id: networkID,
+        network_name,
+        network_address,
+        subnet_mask,
+        number_of_allocated_IP,
+        number_of_usable_hosts,
+        number_of_hosts_wasted,
+        first_host_address,
+        last_host_address,
+        broadcast_address,
+      } = Single_network;
+      return `<div class="single-network">
+<h5><span><i class="far fa-check-circle"></i></span>${network_name}</h5>
+<div class="task-links">
+
+
+
+<!-- edit link -->
+
+<!-- delete btn -->
+
+</div>
+</div>
+<div class = "network__details">
+   <table class="network__table">
+       <thead>
+          <tr>
+              <th>Sub-net Name: ${network_name}</th>
+              <th>Network Details</th>
+              
+          </tr>
+        </thead>
+        <tbody>
+         <tr>
+             <td>Network Address:</td>
+             <td>${network_address}</td>
+         </tr>
+          <tr>
+             <td>Subnet Mask:</td>
+             <td>${subnet_mask}</td>
+         </tr>
+          <tr>
+             <td>Number of Allocated Address:</td>
+             <td>${number_of_allocated_IP}</td>
+         </tr>
+          <tr>
+             <td>Number of Usable Address:</td>
+             <td>${number_of_usable_hosts}</td>
+         </tr>
+          <tr>
+             <td>Number of Host Wasted:</td>
+             <td>${number_of_hosts_wasted}</td>
+         </tr>
+          <tr>
+             <td>First Host Address:</td>
+             <td>${first_host_address}</td>
+         </tr>
+          <tr>
+             <td>Last Host Address:</td>
+             <td>${last_host_address}</td>
+         </tr>
+          <tr>
+             <td>Broadcast Address:</td>
+             <td>${broadcast_address}</td>
+         </tr>
+      </tbody>
+ </table>
+
+</div>`;
+    })
+    .join("");
+  let child__table = document.createElement("div");
+  child__table.innerHTML = allNetworks;
+  container__for__results.appendChild(child__table);
 
   // $("#calculate").attr("value", "Re-Calculate");
   document.getElementById("calculate").innerText = "Re-Calculate";
@@ -774,13 +852,15 @@ const saveToDB1 = async () => {
         last_host_address,
         broadcast_address,
       });
-      const result = await response.json();
-      console.log(result);
-      if (!result.error) {
+      console.log(response);
+      // const result = await response.json();
+      const { data } = response;
+      // console.log(data);
+      if (!data.error) {
         //show_result();
         alert("Success sub-networks are added");
       } else {
-        alert(result.error);
+        alert(data.error);
       }
       // showNetworks();
       // // taskInputDOM.value = "";

@@ -8,7 +8,7 @@ const showNetworks = async () => {
   loadingDOM.style.display = "block";
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch("/api/v1/user-specific-networks", {
+    const response = await fetch("/api/v1/get-user-specific-networks", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
